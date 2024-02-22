@@ -5,6 +5,7 @@ import { HttpStatus } from '@nestjs/common/enums';
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
   use(req: any, res: any, next: () => void) {
+    req.headers.apikey = 'correctKey'
     console.log('Req in users route', req.headers.apikey)
 
     if (!req.headers.apikey) {

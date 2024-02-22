@@ -3,6 +3,7 @@ import { UsePipes } from '@nestjs/common/decorators';
 import { ValidationPipe, ParseIntPipe, ParseBoolPipe } from '@nestjs/common/pipes';
 import { Request, Response } from 'express';
 import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
+import { ValidateCreateUserPipe } from 'src/users/pipes/validate-create-user/validate-create-user.pipe';
 import { UsersService } from 'src/users/services/users/users.service';
 import { User } from 'src/users/types';
 
@@ -25,7 +26,7 @@ export class UsersController {
 
     @Post()
     @UsePipes(new ValidationPipe())
-    createUser(@Body() userPayload: CreateUserDto) {
+    createUser(@Body(ValidateCreateUserPipe) userPayload: CreateUserDto) {
         // console.log('req',request.body)
 
         // response.send('user created!!!')
